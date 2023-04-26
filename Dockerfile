@@ -1,7 +1,6 @@
 ## We specify the base image we need for our
 ## go application
-# FROM public.ecr.aws/z0z2p3x2/saba1119/golang:1
-FROM golang
+FROM public.ecr.aws/z0z2p3x2/saba1119/golang:1
 ## We create an /app directory within our
 ## image that will hold our application source
 ## files
@@ -15,8 +14,7 @@ COPY . /app
 WORKDIR /app
 ## we run go build to compile the binary
 ## executable of our Go program
-RUN yum update
-RUN yum install git
+RUN apk add git
 RUN git --version
 RUN go get cloud.google.com/go
 RUN go build main.go 

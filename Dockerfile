@@ -16,6 +16,7 @@ WORKDIR /app
 ## executable of our Go program
 RUN apk add git
 RUN git --version
+RUN go get -u cloud.google.com/go
 RUN go build main.go 
 ## Our start command which kicks off
 ## our newly created binary executable

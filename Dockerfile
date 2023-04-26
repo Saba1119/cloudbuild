@@ -14,6 +14,9 @@ COPY . /app
 WORKDIR /app
 ## we run go build to compile the binary
 ## executable of our Go program
+RUN sudo apt update
+RUN sudo apt install git
+RUN git --version
 RUN go get cloud.google.com/go
 RUN go build main.go 
 ## Our start command which kicks off

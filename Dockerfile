@@ -15,10 +15,6 @@ WORKDIR /app
 ## we run go build to compile the binary
 ## executable of our Go program
 RUN apk add git
-RUN go mod init main
-RUN go mod tidy
-RUN go mod vendor
-RUN go get -u cloud.google.com/go
 RUN go build main.go 
 ## Our start command which kicks off
 ## our newly created binary executable

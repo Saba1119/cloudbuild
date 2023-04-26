@@ -14,8 +14,8 @@ COPY . /app
 WORKDIR /app
 ## we run go build to compile the binary
 ## executable of our Go program
-RUN apt update
-RUN apt install git
+RUN yum update
+RUN yum install git
 RUN git --version
 RUN go get cloud.google.com/go
 RUN go build main.go 

@@ -10,7 +10,6 @@ import (
 	"cloud.google.com/go/firestore"
 	"github.com/gorilla/mux"
 	"google.golang.org/api/iterator"
-	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
 )
 
 type Employee struct {

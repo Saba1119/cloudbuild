@@ -17,7 +17,7 @@ steps:
   - |
     gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io
     sudo docker pull gcr.io/$PROJECT_ID/demo-app:$COMMIT_SHA
-    sudo docker run -d -p 8080:8080 gcr.io/$PROJECT_ID/demo-app:$COMMIT_SHA
+    sudo docker run -d -p 8000:8000 gcr.io/$PROJECT_ID/demo-app:$COMMIT_SHA
 images:
 - 'gcr.io/$PROJECT_ID/demo-app:$COMMIT_SHA'
 

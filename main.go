@@ -21,7 +21,7 @@ type Employee struct {
 func main() {
 	// Set up credentials
 	ctx := context.Background()
-	credsFile := "${{ secrets.GCP_KEY }}"
+	credsFile := os.Getenv("GCP_KEY")
 	opt := option.WithCredentialsFile(credsFile)
 
 

@@ -46,6 +46,8 @@ func main() {
 	envVar := os.Getenv("GCP_KEY")
 	log.Println("Env var is : ", envVar)
 	d, err := base64.StdEncoding.DecodeString(envVar)
+	str := string(d)
+	log.Println("Data is :", str)
 	opt := option.WithCredentialsJSON(d)
 
 	// Initialize Firestore client

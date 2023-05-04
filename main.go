@@ -44,7 +44,7 @@ func main() {
 	ctx := context.Background()
 	//  credsFile := "/home/saba/gcp-key/credentials.json"
 	envVar := os.Getenv("GCP_KEY")
-	// log.Println("Env var is : ", envVar)
+	log.Println("Env var is : ", envVar)
 	d, err := base64.StdEncoding.DecodeString(envVar)
 	opt := option.WithCredentialsJSON(d)
 

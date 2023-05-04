@@ -7,6 +7,7 @@ require (
 	github.com/GoogleCloudPlatform/functions-framework-go v1.7.1
 	github.com/gorilla/mux v1.8.0
 	google.golang.org/api v0.120.0
+	cloud.google.com/go/storage v1.30.1
 )
 
 require (

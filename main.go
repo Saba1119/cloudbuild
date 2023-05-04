@@ -2,15 +2,18 @@ package main
 
 import (
 	"context"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
-	"google.golang.org/api/option"
+
 	"cloud.google.com/go/firestore"
+	"cloud.google.com/go/storage"
 	"github.com/gorilla/mux"
 	"google.golang.org/api/iterator"
+	"google.golang.org/api/option"
 )
 
 type Employee struct {
@@ -19,12 +22,31 @@ type Employee struct {
 	City string `json:"city"`
 }
 
+func NewClient(ctx context.Context) (*storage.Client, error) {
+	envVar := os.Getenv("GCP_KEY")
+	// log.Println("Env var is : ", envVar)
+	d, err := base64.StdEncoding.DecodeString(envVar)
+	// str := string(d)
+	// log.Println("Data is :", str)
+	// d, err := base64.StdEncoding.DecodeString(os.Getenv("GCP_CREDS_JSON_BASE64"))
+	if err != nil {
+		log.Fatalf("Failed to get env: %v", err)
+	}
+	client, err := storage.NewClient(ctx, option.WithCredentialsJSON(d))
+	if err != nil {
+		return nil, err
+	}
+	return client, err
+}
+
 func main() {
 	// Set up credentials
 	ctx := context.Background()
-	credsFile := os.Getenv("GCP_KEY")
-	opt := option.WithCredentialsFile(credsFile)
-
+	//  credsFile := "/home/saba/gcp-key/credentials.json"
+	envVar := os.Getenv("GCP_KEY")
+	// log.Println("Env var is : ", envVar)
+	d, err := base64.StdEncoding.DecodeString(envVar)
+	opt := option.WithCredentialsJSON(d)
 
 	// Initialize Firestore client
 	ctx = context.Background()
@@ -36,7 +58,6 @@ func main() {
 
 	// Initialize router
 	router := mux.NewRouter()
-
 	// Get all employees
 	router.HandleFunc("/employees", func(w http.ResponseWriter, r *http.Request) {
 		iter := client.Collection("employees").Documents(ctx)

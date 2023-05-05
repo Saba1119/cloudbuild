@@ -16,8 +16,7 @@ steps:
   - '--command'
   - |
     gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io
-    sudo docker pull gcr.io/$PROJECT_ID/demo-app:$COMMIT_SHA
-    sudo docker run -d -p 80:8888 --env GCP_KEY=$_GCP_KEY_CB gcr.io/$PROJECT_ID/demo-app:$COMMIT_SHA  
+    gcloud compute instances create-with-container goapp --container-image gcr.io/$PROJECT_ID/demo-app:$COMMIT_SHA --container-env GCP_KEY=$_GCP_KEY_CB --tags http-server
 images:
 - 'gcr.io/$PROJECT_ID/demo-app:$COMMIT_SHA'
 

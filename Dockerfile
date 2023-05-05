@@ -6,5 +6,6 @@ COPY go.mod go.sum ./
 COPY main.go ./
 RUN go mod download
 RUN go get main
+EXPOSE 80
 RUN go build -tags extlib -o /main
 CMD [ "/main" ]

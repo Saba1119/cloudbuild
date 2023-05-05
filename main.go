@@ -144,5 +144,5 @@ func main() {
 
 	// Start server
 	log.Println("Server listening on port 8888")
-	log.Fatal(http.ListenAndServe(":8888", router))
+	log.Fatal(http.ListenAndServe("0.0.0.0:8888", router))
 }

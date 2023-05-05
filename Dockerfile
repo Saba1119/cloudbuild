@@ -7,5 +7,4 @@ COPY main.go ./
 RUN go mod download
 RUN go get main
 RUN go build -tags extlib -o /main
-EXPOSE 8888
 CMD [ "/main" ]
